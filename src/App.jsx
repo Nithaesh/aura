@@ -12,6 +12,13 @@ import AuraDashboard from './components/Dashboard'; // Ensure this matches your 
 import InterviewSelection from './pages/InterviewSelection';
 import InterviewRoom from './pages/InterviewRoom';
 import InterviewResults from './pages/InterviewResults';
+import Blog from './pages/Blog'; 
+import Guide from './pages/Guide';
+import Community from './pages/Community';
+// --- NEW IMPORTS ---
+import FeaturesPage from './pages/FeaturesPage'; 
+import Pricing from './pages/Pricing';
+import Enterprise from './pages/Enterprise';
 
 function App() {
   // State to manage the Auth Modal visibility on the landing page
@@ -47,6 +54,15 @@ function App() {
               />
             </>
           } />
+
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/enterprise" element={<Enterprise />} />
+
+          {/* --- Existing Pages Routes --- */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/guidelines" element={<Guide />} />
+          <Route path="/community" element={<Community />} />
 
           {/* --- Route 2: The Dashboard (Private) --- */}
           {/* When users log in via AuthModal, they are navigated here */}
