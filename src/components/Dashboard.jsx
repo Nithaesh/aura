@@ -1028,43 +1028,47 @@ export default function AuraDashboard() {
             <UploadModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} onUpload={handleFileUpload} />
 
             {/* Sidebar */}
+            {/* Sidebar */}
             <aside className="w-64 bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/5 flex flex-col h-screen sticky top-0 z-50">
-                <div className="p-6 flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+
+                {/* Wrapped the Logo section in a Link to "/" */}
+                <Link to="/" className="p-6 flex items-center gap-3 group hover:opacity-80 transition-opacity cursor-pointer">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all">
                         <Brain size={18} className="text-white" />
                     </div>
-                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">AURA</span>
+                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                        AURA
+                    </span>
+                </Link>
+            <nav className="flex-1 px-4 py-4 space-y-2">
+                <SidebarItem icon={LayoutDashboard} label="Dashboard" id="dashboard" active={activeTab === 'dashboard'} onClick={setActiveTab} />
+                <div onClick={() => setIsUploadModalOpen(true)} className="group flex items-center p-3 my-1 rounded-xl cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white transition-all">
+                    <Upload size={20} className="group-hover:text-green-400 transition-colors" />
+                    <span className="ml-3 font-medium text-sm tracking-wide">Upload Resume</span>
                 </div>
+                <SidebarItem icon={Video} label="Start Interview" id="interview" active={activeTab === 'interview'} onClick={handleStartInterview} />
+                <SidebarItem icon={History} label="History" id="history" active={activeTab === 'history'} onClick={setActiveTab} />
+                <SidebarItem icon={Zap} label="AI Feedback" id="feedback" active={activeTab === 'feedback'} onClick={setActiveTab} />
+                <SidebarItem icon={FileText} label="Resume Analysis" id="resume" active={activeTab === 'resume'} onClick={setActiveTab} />
+            </nav>
 
-                <nav className="flex-1 px-4 py-4 space-y-2">
-                    <SidebarItem icon={LayoutDashboard} label="Dashboard" id="dashboard" active={activeTab === 'dashboard'} onClick={setActiveTab} />
-                    <div onClick={() => setIsUploadModalOpen(true)} className="group flex items-center p-3 my-1 rounded-xl cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white transition-all">
-                        <Upload size={20} className="group-hover:text-green-400 transition-colors" />
-                        <span className="ml-3 font-medium text-sm tracking-wide">Upload Resume</span>
-                    </div>
-                    <SidebarItem icon={Video} label="Start Interview" id="interview" active={activeTab.startsWith('interview')} onClick={handleStartInterview} />
-                    <SidebarItem icon={History} label="History" id="history" active={activeTab === 'history'} onClick={setActiveTab} />
-                    <SidebarItem icon={Zap} label="AI Feedback" id="feedback" active={activeTab === 'feedback'} onClick={setActiveTab} />
-                    <SidebarItem icon={FileText} label="Resume Analysis" id="resume" active={activeTab === 'resume'} onClick={setActiveTab} />
-                </nav>
-
-                <div className="p-4 border-t border-white/5">
-                    <SidebarItem icon={Settings} label="Settings" id="settings" active={activeTab === 'settings'} onClick={setActiveTab} />
-                    <motion.div whileHover={{ scale: 1.02 }} className="mt-4 flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 cursor-pointer hover:border-purple-500/50 transition-colors">
-                        {userPhoto ? (
-                            <img src={userPhoto} alt="Profile" className="w-8 h-8 rounded-full" />
-                        ) : (
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold">
-                                {userName.charAt(0)}
-                            </div>
-                        )}
-                        <div className="flex-1">
-                            <p className="text-sm font-medium truncate">{userName}</p>
-                            <p className="text-xs text-gray-400">Free Plan</p>
+            <div className="p-4 border-t border-white/5">
+                <SidebarItem icon={Settings} label="Settings" id="settings" active={activeTab === 'settings'} onClick={setActiveTab} />
+                <motion.div whileHover={{ scale: 1.02 }} className="mt-4 flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 cursor-pointer hover:border-purple-500/50 transition-colors">
+                    {userPhoto ? (
+                        <img src={userPhoto} alt="Profile" className="w-8 h-8 rounded-full" />
+                    ) : (
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold">
+                            {userName.charAt(0)}
                         </div>
-                    </motion.div>
-                </div>
-            </aside>
+                    )}
+                    <div className="flex-1">
+                        <p className="text-sm font-medium truncate">{userName}</p>
+                        <p className="text-xs text-gray-400">Free Plan</p>
+                    </div>
+                </motion.div>
+            </div>
+        </aside>
 
             {/* Main Content */}
             <main className="flex-1 overflow-y-auto h-screen relative scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
