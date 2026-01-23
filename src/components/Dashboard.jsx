@@ -18,6 +18,7 @@ import { auth, db } from '../firebase';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion, onSnapshot } from "firebase/firestore";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import * as pdfjsLib from 'pdfjs-dist';
+import { Link } from 'react-router-dom';
 
 // PDF.js Worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
@@ -1032,14 +1033,16 @@ export default function AuraDashboard() {
             <aside className="w-64 bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/5 flex flex-col h-screen sticky top-0 z-50">
 
                 {/* Wrapped the Logo section in a Link to "/" */}
-                <Link to="/" className="p-6 flex items-center gap-3 group hover:opacity-80 transition-opacity cursor-pointer">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all">
-                        <Brain size={18} className="text-white" />
-                    </div>
-                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                        AURA
-                    </span>
-                </Link>
+                <div className="p-6 flex items-center gap-3">
+                    <Link to="/" className="flex items-center gap-3 group hover:opacity-80 transition-opacity cursor-pointer">
+                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-all">
+                          <Brain size={18} className="text-white" />
+                        </div>
+                        <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                            AURA
+                       </span>
+                    </Link>
+                </div>
             <nav className="flex-1 px-4 py-4 space-y-2">
                 <SidebarItem icon={LayoutDashboard} label="Dashboard" id="dashboard" active={activeTab === 'dashboard'} onClick={setActiveTab} />
                 <div onClick={() => setIsUploadModalOpen(true)} className="group flex items-center p-3 my-1 rounded-xl cursor-pointer text-gray-400 hover:bg-white/5 hover:text-white transition-all">
