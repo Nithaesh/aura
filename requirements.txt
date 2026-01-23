@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-python-multipart
-opencv-python
-numpy
-requests
-# CRITICAL: These specific versions prevent the crash
-mediapipe==0.10.9
-protobuf<4
